@@ -51,7 +51,7 @@ defmodule ECSx.LiveDashboard.MixProject do
   defp deps do
     [
       {:ecsx, path: "../ecsx"},
-      {:phoenix_live_dashboard, "~> 0.7.2"},
+      {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"},
       {:color_stream, "~> 0.0.2"},
       {:contex, "~> 0.4"}
     ]

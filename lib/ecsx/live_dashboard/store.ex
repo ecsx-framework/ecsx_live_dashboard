@@ -9,13 +9,12 @@ defmodule ECSx.LiveDashboard.Store do
 
   def init(_) do
     state = %{
-      tick_rate: nil,
       systems: %{},
       components: %{},
       client_events: %{min: :infinity, max: 0, store: []}
     }
 
-    IO.inspect("started!")
+    IO.inspect("dashboard store started!")
 
     {:ok, state}
   end
@@ -28,8 +27,19 @@ defmodule ECSx.LiveDashboard.Store do
     {:noreply, %{state | systems: update_systems(state.systems, name, duration_us)}}
   end
 
-  def handle_cast({:component_table, _name, _row_count}, state) do
-    {:noreply, state}
+  def handle_call(:get_components, _from, state) do
+    {:reply, state.components, state}
+  end
+
+  def handle_cast({:component_action, name, action, second}, state) do
+    new_components =
+      Map.update(state.components, name, %{action => %{second => 1}}, fn action_map ->
+        Map.update(action_map, action, %{second => 1}, fn seconds_map ->
+          Map.update(seconds_map, second, 1, &(&1 + 1))
+        end)
+      end)
+
+    {:noreply, %{state | components: new_components}}
   end
 
   def handle_cast({:client_events, _count}, state) do
@@ -58,8 +68,8 @@ defmodule ECSx.LiveDashboard.Store do
   def system_run(%{name: name, duration_us: duration_us}),
     do: GenServer.cast(__MODULE__, {:system_run, name, duration_us})
 
-  def component_table(%{name: name, row_count: row_count}),
-    do: GenServer.cast(__MODULE__, {:component_table, name, row_count})
+  def component_action(%{name: name, action: action, second: second}),
+    do: GenServer.cast(__MODULE__, {:component_action, name, action, second})
 
   def client_events(%{count: count}),
     do: GenServer.cast(__MODULE__, {:client_events, count})

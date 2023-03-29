@@ -12,9 +12,10 @@ defmodule ECSx.LiveDashboard.Handler do
     Store.system_run(system_run)
   end
 
-  def handle_event([:ecsx, :component_table], measurements, metadata, _config) do
+  def handle_event([:ecsx, :component, action], measurements, metadata, _config) do
     # Logger.info("[#{metadata.component}] has #{measurements.count} rows")
-    Store.component_table(%{name: metadata.component, row_count: measurements.count})
+
+    Store.component_action(%{name: metadata.type, action: action, second: measurements.second})
   end
 
   def handle_event([:ecsx, :client_events], measurements, _metadata, _config) do
