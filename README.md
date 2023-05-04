@@ -20,12 +20,15 @@ Your ECSx application must use Phoenix and have Phoenix LiveDashboard installed
 
 ## Installation
 
-The package can be installed by adding `ecsx_live_dashboard` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `ecsx_live_dashboard` to your list of dependencies in `mix.exs`.
+It is also required to use the master branch of `phoenix_live_dashboard` until they bump the version to
+include the latest updates.
 
 ```elixir
 def deps do
   [
-    {:ecsx_live_dashboard, "~> 0.1.0"}
+    {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"}
+    {:ecsx_live_dashboard, github: "APB9785/ecsx_live_dashboard"}
   ]
 end
 ```

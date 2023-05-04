@@ -23,12 +23,12 @@ defmodule ECSx.LiveDashboard.Store do
     {:reply, state.systems, state}
   end
 
-  def handle_cast({:system_run, name, duration_us}, state) do
-    {:noreply, %{state | systems: update_systems(state.systems, name, duration_us)}}
-  end
-
   def handle_call(:get_components, _from, state) do
     {:reply, state.components, state}
+  end
+
+  def handle_cast({:system_run, name, duration_us}, state) do
+    {:noreply, %{state | systems: update_systems(state.systems, name, duration_us)}}
   end
 
   def handle_cast({:component_action, name, action, second}, state) do

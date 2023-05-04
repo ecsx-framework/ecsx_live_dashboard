@@ -18,7 +18,6 @@ defmodule ECSx.LiveDashboard.MixProject do
     ]
   end
 
-  # Run "mix help compile.app" to learn about applications.
   def application do
     [
       mod: {ECSx.LiveDashboard, []},
@@ -47,12 +46,10 @@ defmodule ECSx.LiveDashboard.MixProject do
     ]
   end
 
-  # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
-      {:ecsx, path: "../ecsx"},
+      {:ecsx, github: "APB9785/ECSx"},
       {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"},
-      {:color_stream, "~> 0.0.2"},
       {:contex, "~> 0.4"}
     ]
   end

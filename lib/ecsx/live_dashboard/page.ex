@@ -143,7 +143,7 @@ defmodule ECSx.LiveDashboard.Page do
             Total System Load: <%= percent(@percent_used) %>
           </p>
           <div style="height: 50px; width: 100%; border: solid; border-radius: 10px;">
-            <div id="percent-used" style={"background-color: purple; height: 100%; width: #{@percent_used}%"} />
+            <div id="percent-used" style={"background-color: #{loadbar_color(@percent_used)}; height: 100%; width: #{@percent_used}%"} />
           </div>
         </div>
 
@@ -209,6 +209,10 @@ defmodule ECSx.LiveDashboard.Page do
   defp format_nav_name(:systems), do: "Systems"
   defp format_nav_name(:components), do: "Components"
   defp format_nav_name(:component), do: "Component"
+
+  defp loadbar_color(percent_used) when percent_used > 50, do: "red"
+  defp loadbar_color(percent_used) when percent_used > 30, do: "orange"
+  defp loadbar_color(_percent_used), do: "green"
 
   defp get_alias(module) when is_atom(module) do
     module

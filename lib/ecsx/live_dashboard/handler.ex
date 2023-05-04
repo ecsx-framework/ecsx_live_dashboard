@@ -17,9 +17,4 @@ defmodule ECSx.LiveDashboard.Handler do
 
     Store.component_action(%{name: metadata.type, action: action, second: measurements.second})
   end
-
-  def handle_event([:ecsx, :client_events], measurements, _metadata, _config) do
-    # Logger.info("[ClientEvents] #{measurements.count} handled")
-    Store.client_events(%{count: measurements.count})
-  end
 end

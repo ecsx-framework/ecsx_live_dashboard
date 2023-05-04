@@ -22,7 +22,6 @@ defmodule ECSx.LiveDashboard do
 
   defp telemetry_events do
     [
-      [:ecsx, :client_events],
       [:ecsx, :component_action, :write],
       [:ecsx, :component_action, :lookup],
       [:ecsx, :component_action, :scan],
