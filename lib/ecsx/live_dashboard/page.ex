@@ -192,11 +192,13 @@ defmodule ECSx.LiveDashboard.Page do
           <tr>
             <th>Entity</th>
             <th>Value</th>
+            <th>Persist?</th>
           </tr>
-          <%= for {entity, value} <- @component_table do %>
+          <%= for {entity, value, persist} <- @component_table do %>
             <tr>
               <td><%= entity %></td>
               <td><%= value %></td>
+              <td><%= persist %></td>
             </tr>
           <% end %>
         </table>
