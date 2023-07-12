@@ -57,7 +57,22 @@ defmodule ECSx.LiveDashboard.Page do
         {type, :ets.info(type, :size)}
       end)
 
-    assign(socket, components: component_table_row_counts)
+    size =
+      component_types_list
+      |> Enum.map(&:ets.info(&1, :memory))
+      |> Enum.sum()
+      |> words_to_bytes()
+      |> format_size()
+
+    assign(socket, components: component_table_row_counts, components_total_size: size)
+  end
+
+  defp words_to_bytes(words) do
+    words * :erlang.system_info(:wordsize)
+  end
+
+  defp format_size(bytes) do
+    "#{bytes} bytes"
   end
 
   defp assign_component_table(socket) do
