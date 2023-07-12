@@ -16,19 +16,18 @@ Adds an [ECSx](https://github.com/APB9785/ECSx) page to Phoenix LiveDashboard
 
 ## Requirements
 
-Your ECSx application must use Phoenix and have Phoenix LiveDashboard installed
+Your ECSx application must use Phoenix and have Phoenix LiveDashboard 0.8+ installed
 
 ## Installation
 
-The package can be installed by adding `ecsx_live_dashboard` to your list of dependencies in `mix.exs`.
-It is also required to use the master branch of `phoenix_live_dashboard` until they bump the version to
-include the latest updates.
+The package can be installed by adding `ecsx_live_dashboard` to your list of dependencies in `mix.exs`
 
 ```elixir
 def deps do
   [
-    {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"}
-    {:ecsx_live_dashboard, github: "APB9785/ecsx_live_dashboard"}
+    ...
+    {:ecsx_live_dashboard, "~> 0.1"},
+    ...
   ]
 end
 ```

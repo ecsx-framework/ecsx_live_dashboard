@@ -48,8 +48,8 @@ defmodule ECSx.LiveDashboard.MixProject do
 
   defp deps do
     [
-      {:ecsx, github: "APB9785/ECSx"},
-      {:phoenix_live_dashboard, github: "phoenixframework/phoenix_live_dashboard"},
+      {:ecsx, "~> 0.4"},
+      {:phoenix_live_dashboard, "~> 0.8"},
       {:contex, "~> 0.4"}
     ]
   end
